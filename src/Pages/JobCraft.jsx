@@ -19,7 +19,7 @@ const JobCraft = () => {
   const [jobDescription, setJobDescription] = useState("");
 
   const ai = new GoogleGenAI({
-    apiKey: "AIzaSyBYNVGnp4OqT19kfHLfvQl3XOvUJg0vaE0",
+    apiKey: import.meta.env.GEMINI_API_KEY,
   });
 
   const handleInputChange = (e) => {
