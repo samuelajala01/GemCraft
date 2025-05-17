@@ -12,6 +12,7 @@
   "dependencies": {
     "@google/genai": "^0.14.0",
     "@tailwindcss/vite": "^4.1.6",
+    "html2pdf.js": "^0.10.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.0",
