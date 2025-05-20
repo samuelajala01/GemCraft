@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import ResOptim from "./Pages/ResOptim";
+import ResGrader from "./Pages/ResGrader";
 import JobCraft from "./Pages/JobCraft";
 import HomeContent from "./Pages/HomeContent";
 function App() {
@@ -20,8 +20,8 @@ function App() {
           <JobCraft/>
         );
 
-      case "resume optimiser":
-        return <ResOptim />;
+      case "resume grader":
+        return <ResGrader />;
 
       default:
         return null;
@@ -61,14 +61,14 @@ function App() {
           Job Craft
         </button>
         <button
-          onClick={() => setCurrentPage("resume optimiser")}
+          onClick={() => setCurrentPage("resume grader")}
           className={`px-6 py-2 rounded-lg font-semibold ${
-            currentPage === "resume optimiser"
+            currentPage === "resume grader"
               ? "bg-blue-600 text-white"
               : "bg-gray-200 text-gray-700 hover:bg-gray-300"
           }`}
         >
-          Resume Optimiser
+          Resume Grader
         </button>
       </div>
 
