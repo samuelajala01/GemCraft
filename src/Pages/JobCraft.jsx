@@ -126,7 +126,7 @@ const JobCraft = () => {
     <div className="max-w-4xl mx-auto p-6 sm:p-8 bg-white rounded-xl shadow-lg">
       <h2 className="text-3xl font-bold mb-6 text-blue-600">JobCraft</h2>
 
-      <div className="flex space-x-3 mb-6 border-b pb-4">
+      <div className="flex mb-6 border-b pb-4">
         <button
           onClick={() => setMode("build")}
           className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-medium ${

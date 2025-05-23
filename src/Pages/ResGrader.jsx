@@ -152,8 +152,8 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
           </div>
 
           <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-semibold mb-3 text-gray-700">
+            <div className="mb-8">
+              <label className="block text-sm font-semibold mb-2 text-gray-700">
                 Target Job Title *
               </label>
               <input
@@ -166,10 +166,10 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
             </div>
 
             <div>
-              <label className="block text-sm font-semibold mb-3 text-gray-700">
+              <label className="block text-sm font-semibold mb-2 text-gray-700">
                 Upload Resume (PDF only) *
               </label>
-              <div className="relative">
+              <div className="relative mb-4">
                 <input
                   type="file"
                   accept=".pdf"
