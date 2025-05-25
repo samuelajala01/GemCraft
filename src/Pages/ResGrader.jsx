@@ -111,6 +111,8 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
         model: "gemini-2.0-flash",
         contents,
         temperature: 0,
+        topP: 1.0,
+        topK: 1, 
         config: {
           responseMimeType: "application/json",
           responseSchema: {
@@ -127,6 +129,7 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
           },
         },
       });
+      
 
       const result = JSON.parse(response.text);
       setSummary(result);
