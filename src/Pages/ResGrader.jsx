@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Loader2, FileText, Star, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Loader2, FileText, Star, AlertCircle, CheckCircle2, Award } from "lucide-react";
 import { GoogleGenAI, Type } from "@google/genai";
 
 const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
@@ -148,6 +148,16 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-4xl mx-auto px-6">
+
+      <div className="text-center mb-8">
+      <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+        <Award className="w-4 h-4" />
+        Resume Grader
+      </div>
+      <h2 className="text-3xl font-bold text-gray-800 mb-4">Grade Your Resume</h2>
+      <p className="text-gray-600">Get detailed analysis and actionable feedback on your resume</p>
+    </div>
+
         <div className="bg-white shadow-lg rounded-xl p-8 border">
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-blue-700 mb-3">Resume Grader 🔍</h1>

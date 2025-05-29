@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import ResGrader from "./Pages/ResGrader";
 import JobCraft from "./Pages/JobCraft";
 import HomeContent from "./Pages/HomeContent";
 import { Github as GithubIcon } from "lucide-react";
-
+import { Github, Sparkles, Star, Zap, Target, FileText, Award } from "lucide-react";
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
   const [currentStep, setCurrentStep] = useState(1);
   const [resumeFile, setResumeFile] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   // Navigation handler function
   const handleNavigation = (page) => {
@@ -33,64 +38,120 @@ function App() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 bg-white shadow-sm z-10">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="text-2xl font-bold text-blue-600">GemCraft</div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    {/* Animated Background Elements */}
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-40 left-1/2 w-80 h-80 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style={{animationDelay: '4s'}}></div>
+      </div>
+    {/* Header */}
+      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg shadow-sm z-50 border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+              <Sparkles className="w-6 h-6 text-white" />
+            </div>
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              GemCraft
+            </div>
+          </div>
           <a
             href="https://github.com/samuelajala01/gemcraft"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 transition-colors"
+            className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200"
           >
-            <GithubIcon size={24} />
+            <Github size={24} />
           </a>
         </div>
-      </div>
-      <div className="text-center mt-32 mb-8">
-        <h1 className="text-7xl font-bold text-blue-600 mb-4">GemCraft</h1>
-        <p className="text-xl text-gray-600">
-          Your AI-powered resume crafting assistant
-        </p>
-      </div>
-      <div className="mx-[4vw]">
-        <div className="bg-white p-6 rounded-lg">
-          {/* Navigation Buttons */}
-          <div className="flex justify-center gap-8 mx-8 space-x-4 mb-8">
-            <button
-              onClick={() => setCurrentPage("home")}
-              className={`px-6 py-2 rounded-lg font-semibold transition-colors duration-200 ${
-                currentPage === "home"
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
-            >
-              Home
-            </button>
-            <button
-              onClick={() => setCurrentPage("jobcraft")}
-              className={`px-6 py-2 rounded-lg font-semibold transition-colors duration-200 ${
-                currentPage === "jobcraft"
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
-            >
-              Job Craft
-            </button>
-            <button
-              onClick={() => setCurrentPage("resume grader")}
-              className={`px-6 py-2 rounded-lg font-semibold transition-colors duration-200 ${
-                currentPage === "resume grader"
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
-            >
-              Resume Grader
-            </button>
+      </header>
+     
+        {/* Hero Section */}
+        <section className={`pt-24 pb-16 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center gap-2 bg-white/50 backdrop-blur-sm border border-white/20 text-blue-700 px-6 py-3 rounded-full text-sm font-medium mb-8 shadow-lg">
+            <Sparkles className="w-4 h-4" />
+            Powered by Advanced AI Technology
           </div>
+          
+          <h1 className="text-6xl md:text-8xl font-black mb-6">
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
+              Gem
+            </span>
+            <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-800 bg-clip-text text-transparent">
+              Craft
+            </span>
+          </h1>
+          
+          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Your AI-powered resume crafting assistant that transforms careers through intelligent optimization
+          </p>
+
+          {/* Feature Highlights */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
+            <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-lg">
+              <div className="text-2xl mb-2">🎯</div>
+              <div className="font-semibold text-gray-800 mb-1">Smart Matching</div>
+              <div className="text-sm text-gray-600">AI-powered job alignment</div>
+            </div>
+            <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-lg">
+              <div className="text-2xl mb-2">📊</div>
+              <div className="font-semibold text-gray-800 mb-1">Detailed Analysis</div>
+              <div className="text-sm text-gray-600">Comprehensive feedback</div>
+            </div>
+            <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-lg">
+              <div className="text-2xl mb-2">⚡</div>
+              <div className="font-semibold text-gray-800 mb-1">Instant Results</div>
+              <div className="text-sm text-gray-600">Real-time optimization</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Main Content */}
+       
+         <main className="max-w-7xl mx-auto px-6 pb-16">
+        <div className="bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
+          {/* Navigation */}
+          <nav className="border-b border-gray-100 bg-white/50 backdrop-blur-sm overflow-x-auto">
+            <div className="flex justify-center gap-1 p-2 min-w-max">
+              {[
+                { key: "home", label: "Home", icon: Sparkles },
+                { key: "jobcraft", label: "Job Craft", icon: Target },
+                { key: "resume grader", label: "Resume Grader", icon: Award }
+              ].map(({ key, label, icon: Icon }) => (
+                <button
+                  key={key}
+                  onClick={() => setCurrentPage(key)}
+                  className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base whitespace-nowrap ${
+                    currentPage === key
+                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transform scale-105"
+                      : "text-gray-600 hover:text-gray-800 hover:bg-white/60"
+                  }`}
+                >
+                  <Icon className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+                  <span className="hidden xs:inline sm:inline">{label}</span>
+                  <span className="xs:hidden sm:hidden">
+                    {key === "home" ? "Home" : key === "jobcraft" ? "Craft" : "Grade"}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </nav>
 
           {/* Content Area */}
-          <div className="mt-20">{renderContent()}</div>
+          <div className="p-8 md:p-12 min-h-[600px]">
+            <div className={`transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              {renderContent()}
+            </div>
+          </div>
         </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="text-center py-8 text-gray-500">
+        <p>© 2025 GemCraft. Crafted with ❤️ and ⚡ for your career success.</p>
+      </footer>
       </div>
     </>
   );
