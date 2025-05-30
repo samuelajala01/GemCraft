@@ -47,7 +47,7 @@ const ResumeChatbot = () => {
   // Use the existing AI backend to extract information
   const extractInfoFromMessage = async (userMessage) => {
     try {
-      const response = await fetch("http://localhost:4000/extract-info", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/extract-info`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -72,7 +72,7 @@ const ResumeChatbot = () => {
   // Use the existing AI backend to get next question
   const getNextQuestion = async (currentData) => {
     try {
-      const response = await fetch("http://localhost:4000/generate-next-question", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/generate-next-question`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -160,7 +160,7 @@ const ResumeChatbot = () => {
         }
       };
 
-      const response = await fetch("http://localhost:4000/build-from-chat", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/build-from-chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formattedData),
