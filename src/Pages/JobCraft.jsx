@@ -37,7 +37,7 @@ const JobCraft = () => {
       formData.append("jobDescription", jobDescription);
       formData.append("mode", "refine");
 
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/extract-info`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/refine-pdf`, {
         method: "POST",
         body: formData,
       });
@@ -72,7 +72,6 @@ const JobCraft = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 sm:p-8 bg-white rounded-xl shadow-lg">
-      <h2 className="text-3xl font-bold mb-6 text-blue-600">JobCraft</h2>
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
           <Target className="w-4 h-4" />
