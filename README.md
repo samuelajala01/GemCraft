@@ -1,12 +1,31 @@
-# React + Vite
+# 💎 GemCraft – AI Resume Analyzer & Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GemCraft is an AI-powered resume analysis and generation tool built with **React**, **Gemini API**, and **Tailwind CSS**. It allows users to upload their resumes, analyze them against job descriptions, receive quality-based feedback, and regenerate tailored resumes — all from a clean, interactive web interface.
 
-Currently, two official plugins are available:
+> 🚧 Note: The backend for PDF generation and AI processing is hosted in a separate repository.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 📄 Upload and analyze resume content
+- 🤖 AI-based resume feedback using Gemini API
+- 🎯 Targeted resume scoring against job descriptions
+- 🧠 Suggestions for improvement
+- 🪄 One-click resume regeneration with Gemini
+- 📤 Export polished resumes as PDFs
+- ⚡ Real-time HTML-to-PDF rendering using `Puppeteer`
+- 🔍 Section-wise feedback breakdown
+
+---
+
+## 📦 Tech Stack
+
+| Tech | Description |
+|----------|-------------|
+| React (vite)    | Frontend framework |
+| Tailwind CSS | UI framework |
+| Puppeteer | For backend-side PDF generation |
+| Gemini API | Google AI model used for resume analysis and generation |
+
+

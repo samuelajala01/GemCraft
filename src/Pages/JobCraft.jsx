@@ -4,7 +4,7 @@ import { Target } from "lucide-react";
 import ResumeChatbot from "../ResumeChatbot";
 
 const JobCraft = () => {
-  const [mode, setMode] = useState("build"); // 'build' or 'refine'
+  const [mode, setMode] = useState("refine"); // 'build' or 'refine'
 
   // Refine mode states
   const [loading, setLoading] = useState(false);
@@ -71,7 +71,7 @@ const JobCraft = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 sm:p-8 bg-white rounded-xl shadow-lg">
+    <div className="max-w-4xl mx-auto p-4 sm:p-8 bg-white rounded-xl shadow-lg">
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
           <Target className="w-4 h-4" />
@@ -81,10 +81,20 @@ const JobCraft = () => {
           Craft Your Perfect Resume
         </h2>
         <p className="text-gray-600">
-          Upload your resume and job description to get AI-powered optimization
+          Upload your resume and job description to get insights
         </p>
       </div>
-      <div className="flex mb-6 border-b pb-4">
+      <div className="flex mb-6 border-b pb-4 gap-4">
+      <button
+          onClick={() => setMode("refine")}
+          className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-medium ${
+            mode === "refine"
+              ? "bg-blue-600 text-white shadow-md"
+              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+          }`}
+        >
+          Refine Existing
+        </button>
         <button
           onClick={() => setMode("build")}
           className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-medium mr-2 ${
@@ -95,24 +105,15 @@ const JobCraft = () => {
         >
           Build Resume
         </button>
-        <button
-          onClick={() => setMode("refine")}
-          className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-medium ${
-            mode === "refine"
-              ? "bg-blue-600 text-white shadow-md"
-              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-          }`}
-        >
-          Refine Existing
-        </button>
+        
       </div>
 
       {mode === "build" && <ResumeChatbot />}
 
       {mode === "refine" && (
         <div className="space-y-6 bg-gray-50 p-5 sm:p-6 rounded-lg">
-          <h3 className="text-lg font-semibold text-gray-800">
-            Upload your existing resume
+          <h3 className="text-lg font-semibold text-gray-800 my-4">
+            Upload your existing resume(*pdf)
           </h3>
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <label className="bg-blue-600 text-white px-5 py-2 rounded-lg cursor-pointer hover:bg-blue-700 transition-colors duration-200 inline-flex items-center justify-center font-medium">
@@ -145,7 +146,7 @@ const JobCraft = () => {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-sm font-medium text-gray-700 my-2">
               Job Description
             </label>
             <textarea
@@ -159,7 +160,7 @@ const JobCraft = () => {
           <button
             onClick={handleRefineResume}
             disabled={loading || !file || !jobDescription}
-            className="bg-blue-600 text-white px-6 py-2.5 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed font-medium"
+            className="bg-blue-600 text-white mt-4 px-6 py-2.5 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed font-medium"
           >
             {loading ? (
               <span className="flex items-center justify-center">

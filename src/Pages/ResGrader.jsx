@@ -147,7 +147,7 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-4xl mx-auto px-2">
 
       <div className="text-center mb-8">
       <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
