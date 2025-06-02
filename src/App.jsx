@@ -366,6 +366,24 @@ function App() {
           </div>
         </section>
 
+{/* Coming Soon Section */}
+<section className="py-16 bg-white/30 backdrop-blur-sm">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <div className="bg-white/60 backdrop-blur-sm p-8 rounded-2xl border border-white/20 shadow-lg">
+              <div className="text-4xl mb-4">🚀</div>
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                More Features Coming Soon
+              </h2>
+              <p className="text-lg text-gray-600 mb-6">
+                We're working on exciting new features to make your job search even more successful
+              </p>
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">
+                <Sparkles className="w-4 h-4" />
+                Stay tuned for updates
+              </div>
+            </div>
+          </div>
+        </section>
       
                {/* Main Content */}
                <main className="max-w-7xl mx-auto px-6 pb-16">
