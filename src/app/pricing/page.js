@@ -1,86 +1,132 @@
-import React from "react";
-import { CheckCircle } from "lucide-react";
+// File: src/app/Pages/Pricing.js
+import { ArrowRight, CheckCircle } from "lucide-react";
 
-function PlanCard({ title, features, price, highlight, buttonText }) {
+export default function Pricing() {
+  const plans = [
+    {
+      name: "Free",
+      price: "$0",
+      period: "forever",
+      description: "Perfect for getting started with resume optimization",
+      features: [
+        "Basic resume grading",
+        "3 job matches per month",
+        "Limited AI suggestions",
+        "Standard formatting",
+        "Email support",
+      ],
+      buttonText: "Get Started",
+      buttonClass: "bg-gray-200 text-gray-800 hover:bg-gray-300",
+      popular: false,
+    },
+    {
+      name: "Pro",
+      price: "$9",
+      period: "per month",
+      description: "For serious job seekers who want maximum results",
+      features: [
+        "Advanced resume grading",
+        "Unlimited job matches",
+        "AI-powered optimization",
+        "ATS compatibility check",
+        "Priority support",
+        "Real-time feedback",
+        "Export to PDF/Word",
+      ],
+      buttonText: "Go Pro",
+      buttonClass:
+        "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-xl",
+      popular: true,
+    },
+    {
+      name: "Enterprise",
+      price: "$29",
+      period: "per month",
+      description: "For teams and career coaching professionals",
+      features: [
+        "All Pro features",
+        "Team management",
+        "Bulk processing",
+        "Custom branding",
+        "Dedicated account manager",
+        "API access",
+        "Advanced analytics",
+        "Custom integrations",
+      ],
+      buttonText: "Contact Sales",
+      buttonClass: "bg-indigo-100 text-indigo-700 hover:bg-indigo-200",
+      popular: false,
+    },
+  ];
+
   return (
-    <div
-      className={`rounded-2xl p-6 text-left shadow-xl border transition-colors duration-300 ${
-        highlight ? "border-purple-500 bg-purple-50" : "border-gray-200 bg-white"
-      }`}
-    >
-      <h3
-        className={`text-2xl font-bold mb-4 ${
-          highlight ? "text-purple-700" : "text-gray-800"
-        }`}
-      >
-        {title}
-      </h3>
-      <ul className="space-y-2 mb-6">
-        {features.map((feature, index) => (
-          <li key={index} className="flex items-center text-gray-700 text-sm">
-            <CheckCircle size={16} className="text-purple-500 mr-2" /> {feature}
-          </li>
-        ))}
-      </ul>
-      {price && <p className="text-xl font-bold text-purple-700 mb-4">{price}</p>}
-      <button
-        className={`w-full py-2 px-4 rounded-lg font-semibold text-white ${
-          highlight ? "bg-purple-600 hover:bg-purple-700" : "bg-purple-500 hover:bg-purple-600"
-        }`}
-      >
-        {buttonText}
-      </button>
-    </div>
-  );
-}
-
-export default function PricingPage() {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 px-6 py-10 text-center">
-      <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 mb-6">
-        Simple, Clear Pricing
-      </h1>
-      <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-        Choose the right plan to level up your resume and land your dream job faster.
-      </p>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-w-4xl mx-auto">
-        <PlanCard
-          title="Free Plan"
-          features={[
-            "1 Resume Upload",
-            "1 Job Description Match",
-            "Basic AI Suggestions",
-            "Download as PDF"
-          ]}
-          price={null}
-          highlight={false}
-          buttonText="Get Started Free"
-        />
-
-        <PlanCard
-          title="Pro Plan"
-          features={[
-            "Unlimited Resume Uploads",
-            "Unlimited Job Description Matches",
-            "Advanced AI Optimization",
-            "Cover Letter Generator",
-            "Download in Multiple Formats"
-          ]}
-          price="$8/month"
-          highlight={true}
-          buttonText="Upgrade to Pro"
-        />
+    <div className="max-w-5xl mx-auto py-8 px-4">
+      <div className="text-center mb-16">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+          Simple, Transparent Pricing
+        </h1>
+        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          Choose the plan that works best for your career journey. All plans
+          include our core resume optimization features.
+        </p>
       </div>
 
-      <div className="mt-20 max-w-4xl mx-auto text-left bg-white/60 backdrop-blur-md rounded-2xl p-8 shadow-lg">
-        <h2 className="text-3xl font-bold text-purple-700 mb-4">Why Go Pro?</h2>
-        <ul className="list-disc ml-6 space-y-2 text-gray-700">
-          <li>Get tailored feedback to match your resume to any job you want.</li>
-          <li>Generate personalized cover letters instantly.</li>
-          <li>Access deeper analysis to improve tone, keywords, and formatting.</li>
-          <li>Get updates and improvements without worrying about limits.</li>
-        </ul>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {plans.map((plan, index) => (
+          <div
+            key={index}
+            className={`bg-white/70 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 ${
+              plan.popular ? "ring-2 ring-blue-500 relative" : ""
+            }`}
+          >
+            {plan.popular && (
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-1 rounded-full text-sm font-bold whitespace-nowrap">
+                MOST POPULAR
+              </div>
+            )}
+            <div className="p-8">
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                {plan.name}
+              </h2>
+              <div className="mb-6">
+                <span className="text-4xl font-extrabold text-gray-800">
+                  {plan.price}
+                </span>
+                <span className="text-gray-600">/{plan.period}</span>
+              </div>
+              <p className="text-gray-600 mb-8">{plan.description}</p>
+              <ul className="mb-10 space-y-4">
+                {plan.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
+                    <span className="text-gray-700">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <button
+                className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2 ${plan.buttonClass}`}
+              >
+                {plan.buttonText}
+                {!plan.popular && <ArrowRight className="w-4 h-4" />}
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-16 bg-blue-50/50 backdrop-blur-sm p-8 rounded-2xl border border-blue-100 text-center">
+        <h3 className="text-xl font-semibold text-gray-800 mb-4">
+          Enterprise or Education Solutions?
+        </h3>
+        <p className="text-gray-600 max-w-2xl mx-auto mb-6">
+          We offer custom plans for universities, career centers, and
+          organizations. Get volume discounts, dedicated support, and custom
+          features tailored to your needs.
+        </p>
+        <button className="inline-flex items-center gap-2 bg-white text-gray-800 px-6 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all border border-gray-200">
+          Contact our Sales Team
+          <ArrowRight className="w-4 h-4" />
+        </button>
       </div>
     </div>
   );

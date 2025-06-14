@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from "react";
+import Link from 'next/link'
 import ResGrader from "./Pages/ResGrader";
 import JobCraft from "./Pages/JobCraft";
 import HomeContent from "./Pages/HomeContent";
@@ -121,15 +122,17 @@ function App() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              
-              <a
+              <a></a>
+              <a>Pricing</a>
+              {/* <a
                 href="https://github.com/samuelajala01/gemcraft"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200"
               >
                 <Github size={24} />
-              </a>
+              </a> */}
+             <Link href="/"> <button className="py-2 px-8 bg-purple-600 text-white rounded-md">Login</button></Link>
             </div>
           </div>
         </header>
