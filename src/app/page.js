@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
 import { useState, useEffect } from "react";
-import Link from 'next/link'
+import Link from "next/link";
 import ResGrader from "./Pages/ResGrader";
 import JobCraft from "./Pages/JobCraft";
 import HomeContent from "./Pages/HomeContent";
@@ -34,16 +34,15 @@ function App() {
     setIsLoaded(true);
   }, []);
 
-
   const handleNavigation = (page) => {
     setCurrentPage(page);
-    
+
     setTimeout(() => {
-      const mainContent = document.querySelector('main');
+      const mainContent = document.querySelector("main");
       if (mainContent) {
-        mainContent.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start' 
+        mainContent.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
         });
       }
     }, 100);
@@ -52,12 +51,12 @@ function App() {
   const handleStartCrafting = () => {
     setCurrentPage("jobcraft");
     setTimeout(() => {
-      const mainContent = document.querySelector('main');
+      const mainContent = document.querySelector("main");
       if (mainContent) {
         const offsetTop = mainContent.offsetTop - 20;
-        window.scrollTo({ 
-          top: offsetTop, 
-          behavior: 'smooth' 
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
         });
       }
     }, 100);
@@ -66,13 +65,12 @@ function App() {
   const handleGradeResume = () => {
     setCurrentPage("resume grader");
     setTimeout(() => {
-      const mainContent = document.querySelector('main');
+      const mainContent = document.querySelector("main");
       if (mainContent) {
-
         const offsetTop = mainContent.offsetTop - 20;
-        window.scrollTo({ 
-          top: offsetTop, 
-          behavior: 'smooth' 
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
         });
       }
     }, 100);
@@ -96,8 +94,7 @@ function App() {
 
   return (
     <>
-       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
           <div
@@ -112,27 +109,46 @@ function App() {
 
         {/* Header */}
         <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg shadow-sm z-50 border-b border-white/20">
-          <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-                <Sparkles className="w-6 h-6 text-white" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                  <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+                </div>
+                <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  GemCraft
+                </div>
               </div>
-              <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                GemCraft
+
+              <div className="flex gap-8">
+                <a
+                  href="#pricing"
+                  className="hidden sm:inline-block text-gray-600 hover:text-gray-900"
+                >
+                  How it Works
+                </a>
+                <a
+                  href="#pricing"
+                  className="hidden sm:inline-block text-gray-600 hover:text-gray-900"
+                >
+                  Pricing
+                </a>
               </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <a></a>
-              <a>Pricing</a>
-              {/* <a
-                href="https://github.com/samuelajala01/gemcraft"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200"
-              >
-                <Github size={24} />
-              </a> */}
-             <Link href="/"> <button className="py-2 px-8 bg-purple-600 text-white rounded-md">Login</button></Link>
+
+              <div className="flex items-center gap-2 sm:gap-4 text-sm sm:text-base">
+                <div className="flex items-center gap-2">
+                  <Link href="/login">
+                    <button className="py-1.5 sm:py-2 px-4 sm:px-6 bg-purple-600 text-white text-sm sm:text-base rounded-md hover:bg-purple-700 transition-colors">
+                      Login
+                    </button>
+                  </Link>
+                  <Link href="/signup">
+                    <button className="py-1.5 sm:py-2 px-4 sm:px-6 bg-white text-purple-600 text-sm sm:text-base rounded-md border border-purple-600 hover:bg-purple-50 transition-colors">
+                      Sign Up
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </header>
@@ -183,9 +199,7 @@ function App() {
             {/* Stats Section */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto mb-16">
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">
-                  1K+
-                </div>
+                <div className="text-3xl font-bold text-blue-600 mb-2">1K+</div>
                 <div className="text-gray-600">Resumes Optimized</div>
               </div>
               <div className="text-center">
@@ -335,7 +349,9 @@ function App() {
                   Real-time Feedback
                 </h3>
                 <p className="text-gray-600">
-                Get rapid responses and improvement tips within seconds whenever you query your resume—no waiting, just actionable insights.
+                  Get rapid responses and improvement tips within seconds
+                  whenever you query your resume—no waiting, just actionable
+                  insights.
                 </p>
               </div>
 
@@ -364,14 +380,12 @@ function App() {
                   and content structure
                 </p>
               </div>
-
-             
             </div>
           </div>
         </section>
 
-{/* Coming Soon Section */}
-<section className="py-16 bg-white/30 backdrop-blur-sm">
+        {/* Coming Soon Section */}
+        <section className="py-16 bg-white/30 backdrop-blur-sm">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <div className="bg-white/60 backdrop-blur-sm p-8 rounded-2xl border border-white/20 shadow-lg">
               <div className="text-4xl mb-4">🚀</div>
@@ -379,7 +393,8 @@ function App() {
                 More Features Coming Soon
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                We're working on exciting new features to make your job search even more successful
+                We're working on exciting new features to make your job search
+                even more successful
               </p>
               <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">
                 <Sparkles className="w-4 h-4" />
@@ -388,9 +403,9 @@ function App() {
             </div>
           </div>
         </section>
-      
-               {/* Main Content */}
-               <main className="max-w-7xl mx-auto px-6 pb-16">
+
+        {/* Main Content */}
+        <main className="max-w-7xl mx-auto px-6 pb-16">
           <div className="bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
             {/* Navigation */}
             <nav className="border-b border-gray-100 bg-white/50 backdrop-blur-sm overflow-x-auto">
@@ -399,11 +414,14 @@ function App() {
                   { key: "home", label: "Home", icon: Sparkles },
                   { key: "jobcraft", label: "Job Craft", icon: Target },
                   { key: "resume grader", label: "Resume Grader", icon: Award },
+                  { key: "features", label: "Features", icon: Star },
+                  { key: "pricing", label: "Pricing", icon: Zap },
+                  { key: "about", label: "About", icon: Users },
                 ].map(({ key, label, icon: Icon }) => (
                   <button
                     key={key}
                     onClick={() => handleNavigation(key)}
-                    className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base whitespace-nowrap ${
+                    className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
                       currentPage === key
                         ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transform scale-105"
                         : "text-gray-600 hover:text-gray-800 hover:bg-white/60"
@@ -416,7 +434,13 @@ function App() {
                         ? "Home"
                         : key === "jobcraft"
                         ? "Craft"
-                        : "Grade"}
+                        : key === "resume grader"
+                        ? "Grade"
+                        : key === "features"
+                        ? "Feat"
+                        : key === "pricing"
+                        ? "Price"
+                        : "About"}
                     </span>
                   </button>
                 ))}
@@ -438,7 +462,7 @@ function App() {
           </div>
         </main>
 
-        <Footer/>
+        <Footer />
       </div>
     </>
   );
