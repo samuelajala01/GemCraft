@@ -137,7 +137,7 @@ function App() {
 
               <div className="flex items-center gap-2 sm:gap-4 text-sm sm:text-base">
                 <div className="flex items-center gap-2">
-                  <Link href="/login">
+                  <Link href="/auth">
                     <button className="py-1.5 sm:py-2 px-4 sm:px-6 bg-purple-600 text-white text-sm sm:text-base rounded-md hover:bg-purple-700 transition-colors">
                       Login
                     </button>
@@ -414,9 +414,6 @@ function App() {
                   { key: "home", label: "Home", icon: Sparkles },
                   { key: "jobcraft", label: "Job Craft", icon: Target },
                   { key: "resume grader", label: "Resume Grader", icon: Award },
-                  { key: "features", label: "Features", icon: Star },
-                  { key: "pricing", label: "Pricing", icon: Zap },
-                  { key: "about", label: "About", icon: Users },
                 ].map(({ key, label, icon: Icon }) => (
                   <button
                     key={key}
