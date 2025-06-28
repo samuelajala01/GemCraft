@@ -31,22 +31,9 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="flex gap-8">
-              <a
-                href="#pricing"
-                className="hidden sm:inline-block text-gray-600 hover:text-gray-900"
-              >
-                How it Works
-              </a>
-              <a
-                href="/pricing"
-                className="hidden sm:inline-block text-gray-600 hover:text-gray-900"
-              >
-                Pricing
-              </a>
-            </div>
+            
 
-            <div className="flex items-center gap-2 sm:gap-4 text-sm sm:text-base">
+            {/* <div className="flex items-center gap-2 sm:gap-4 text-sm sm:text-base">
               <div className="flex items-center gap-2">
                 <Link href="/auth">
                   <button className="py-1.5 sm:py-2 px-4 sm:px-6 bg-purple-600 text-white text-sm sm:text-base rounded-md hover:bg-purple-700 transition-colors">
@@ -59,7 +46,15 @@ const Navbar = () => {
                   </button>
                 </Link>
               </div>
-            </div>
+            </div> */}
+            <div className="flex items-center gap-4">
+                  <a
+                    href="https://github.com/samuelajala01/gemcraft"
+                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    <Github className="w-10 h-10" />
+                  </a>
+                </div>
           </div>
         </div>
       </header>
