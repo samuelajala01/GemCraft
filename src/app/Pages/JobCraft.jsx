@@ -37,7 +37,7 @@ const JobCraft = () => {
       formData.append("jobDescription", jobDescription);
       formData.append("mode", "refine");
 
-      const response = await fetch(`${process.env.BACKEND_URL}/refine-pdf`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/refine-pdf`, {
         method: "POST",
         body: formData,
       });
@@ -85,7 +85,7 @@ const JobCraft = () => {
         </p>
       </div>
       <div className="flex mb-6 border-b pb-4 gap-4">
-      <button
+        <button
           onClick={() => setMode("refine")}
           className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-medium ${
             mode === "refine"
@@ -105,7 +105,6 @@ const JobCraft = () => {
         >
           Build Resume
         </button>
-        
       </div>
 
       {mode === "build" && <ResumeChatbot />}
