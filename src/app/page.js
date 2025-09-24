@@ -32,7 +32,94 @@ function App() {
 
   useEffect(() => {
     setIsLoaded(true);
+    
+    // Add scroll-smooth class to html element for enhanced scrolling
+    document.documentElement.classList.add('scroll-smooth');
+    
+    // Handle smooth scrolling for anchor links
+    const handleAnchorClick = (e) => {
+      const href = e.target.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          smoothScrollTo(targetElement, 80); // Extra offset for better spacing
+        }
+      }
+    };
+
+    // Throttle function for performance optimization
+    const throttle = (func, limit) => {
+      let inThrottle;
+      return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+          func.apply(context, args);
+          inThrottle = true;
+          setTimeout(() => inThrottle = false, limit);
+        }
+      }
+    };
+
+    // Optimize scroll performance with passive listeners
+    const optimizeScrolling = () => {
+      // Enable passive scroll listeners for better performance
+      const handleScroll = throttle(() => {
+        // Optional: Add any scroll-based animations or effects here
+      }, 16); // 60fps throttling
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    };
+
+    const cleanupScroll = optimizeScrolling();
+
+    // Add event listener for anchor links
+    document.addEventListener('click', handleAnchorClick);
+    
+    // Cleanup on unmount
+    return () => {
+      document.documentElement.classList.remove('scroll-smooth');
+      document.removeEventListener('click', handleAnchorClick);
+      cleanupScroll();
+    };
   }, []);
+
+  // Enhanced smooth scroll function with better performance
+  const smoothScrollTo = (element, offset = 0) => {
+    if (!element) return;
+    
+    const targetPosition = element.offsetTop - offset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = Math.min(1000, Math.abs(distance) * 0.5); // Dynamic duration based on distance
+    let startTime = null;
+
+    // Easing function for natural feel
+    const easeInOutCubic = (t) => {
+      return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+    };
+
+    const animateScroll = (currentTime) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+      const ease = easeInOutCubic(progress);
+      
+      window.scrollTo(0, startPosition + distance * ease);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      }
+    };
+
+    requestAnimationFrame(animateScroll);
+  };
 
   const handleNavigation = (page) => {
     setCurrentPage(page);
@@ -40,12 +127,9 @@ function App() {
     setTimeout(() => {
       const mainContent = document.querySelector("main");
       if (mainContent) {
-        mainContent.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+        smoothScrollTo(mainContent, 20);
       }
-    }, 100);
+    }, 50); // Reduced timeout for faster response
   };
 
   const handleStartCrafting = () => {
@@ -53,13 +137,9 @@ function App() {
     setTimeout(() => {
       const mainContent = document.querySelector("main");
       if (mainContent) {
-        const offsetTop = mainContent.offsetTop - 20;
-        window.scrollTo({
-          top: offsetTop,
-          behavior: "smooth",
-        });
+        smoothScrollTo(mainContent, 20);
       }
-    }, 100);
+    }, 50);
   };
 
   const handleGradeResume = () => {
@@ -67,13 +147,9 @@ function App() {
     setTimeout(() => {
       const mainContent = document.querySelector("main");
       if (mainContent) {
-        const offsetTop = mainContent.offsetTop - 20;
-        window.scrollTo({
-          top: offsetTop,
-          behavior: "smooth",
-        });
+        smoothScrollTo(mainContent, 20);
       }
-    }, 100);
+    }, 50);
   };
 
   const renderContent = () => {
@@ -94,42 +170,22 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-        <div className="fixed inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-          <div
-            className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"
-            style={{ animationDelay: "2s" }}
-          ></div>
-          <div
-            className="absolute top-40 left-1/2 w-80 h-80 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"
-            style={{ animationDelay: "4s" }}
-          ></div>
-        </div>
+      <div className="min-h-screen bg-gray-50">
+        {/* Clean background */}
 
-        {/* Hero Section */}
         <section
           className={`pt-24 pb-16 transition-all duration-1000 ${
             isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <div className="max-w-7xl mx-auto px-6 text-center">
-            <div className="inline-flex items-center gap-2 bg-white/50 backdrop-blur-sm border border-white/20 text-blue-700 px-6 py-3 rounded-full text-sm font-medium mb-8 shadow-lg">
-              <Sparkles className="w-4 h-4" />
-              Powered by Advanced AI Technology
-            </div>
-
-            <h1 className="text-6xl md:text-8xl font-black mb-6">
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
-                Gem
-              </span>
-              <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-800 bg-clip-text text-transparent">
-                Craft
-              </span>
+            <h1 className="text-6xl md:text-8xl font-black lg:my-12">
+              <span className="text-blue-600">Gem</span>
+              <span className="text-gray-900">Craft</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Your AI-powered resume crafting assistant that transforms careers
+            <p className="text-xl md:text-2xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed">
+              Your resume crafting tool that transforms your resume
               through intelligent optimization
             </p>
 
@@ -137,14 +193,14 @@ function App() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
               <button
                 onClick={handleStartCrafting}
-                className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+                className="group bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
               >
                 Start Crafting
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <button
                 onClick={handleGradeResume}
-                className="bg-white/70 backdrop-blur-sm text-gray-700 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/90 transition-all duration-300 border border-white/20 hover:shadow-lg"
+                className="bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all duration-300 border border-gray-300 hover:shadow-lg"
               >
                 Grade My Resume
               </button>
@@ -157,17 +213,15 @@ function App() {
                 <div className="text-gray-600">Resumes Optimized</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600 mb-2">
-                  85%
-                </div>
+                <div className="text-3xl font-bold text-blue-600 mb-2">85%</div>
                 <div className="text-gray-600">Interview Rate Increase</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-pink-600 mb-2">2K+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2">2K+</div>
                 <div className="text-gray-600">Job Matches Made</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-indigo-600 mb-2">
+                <div className="text-3xl font-bold text-blue-600 mb-2">
                   4.9/5
                 </div>
                 <div className="text-gray-600">User Rating</div>
@@ -176,9 +230,9 @@ function App() {
 
             {/* Feature Highlights */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
-              <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <div className="text-2xl mb-2">🎯</div>
-                <div className="font-semibold text-gray-800 mb-1">
+                <div className="font-semibold text-gray-900 mb-1">
                   Smart Matching
                 </div>
                 <div className="text-sm text-gray-600">
@@ -186,18 +240,18 @@ function App() {
                   requirements
                 </div>
               </div>
-              <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <div className="text-2xl mb-2">📊</div>
-                <div className="font-semibold text-gray-800 mb-1">
+                <div className="font-semibold text-gray-900 mb-1">
                   Detailed Analysis
                 </div>
                 <div className="text-sm text-gray-600">
                   Comprehensive feedback with actionable improvement suggestions
                 </div>
               </div>
-              <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <div className="text-2xl mb-2">⚡</div>
-                <div className="font-semibold text-gray-800 mb-1">
+                <div className="font-semibold text-gray-900 mb-1">
                   Instant Results
                 </div>
                 <div className="text-sm text-gray-600">
@@ -210,16 +264,13 @@ function App() {
         </section>
 
         {/* How It Works Section */}
-        <section
-          id="how-it-works"
-          className="py-16 bg-white/40 backdrop-blur-sm"
-        >
+        <section id="how-it-works" className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 How GemCraft Works
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-xl text-gray-700 max-w-2xl mx-auto">
                 Transform your resume in three simple steps with our AI-powered
                 optimization engine
               </p>
@@ -227,10 +278,10 @@ function App() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center group">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <FileText className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
                   1. Upload Your Resume
                 </h3>
                 <p className="text-gray-600">
@@ -240,10 +291,10 @@ function App() {
               </div>
 
               <div className="text-center group">
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Target className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
                   2. Add Job Description
                 </h3>
                 <p className="text-gray-600">
@@ -253,10 +304,10 @@ function App() {
               </div>
 
               <div className="text-center group">
-                <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Sparkles className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
                   3. Get Optimized Results
                 </h3>
                 <p className="text-gray-600">
@@ -269,24 +320,24 @@ function App() {
         </section>
 
         {/* Features Section */}
-        <section id="features" className="py-16">
+        <section id="features" className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Powerful Features
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-xl text-gray-700 max-w-2xl mx-auto">
                 Everything you need to create a winning resume that gets noticed
                 by recruiters
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <TrendingUp className="w-6 h-6 text-blue-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">
                   ATS Optimization
                 </h3>
                 <p className="text-gray-600">
@@ -295,11 +346,11 @@ function App() {
                 </p>
               </div>
 
-              <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <Clock className="w-6 h-6 text-purple-600" />
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <Clock className="w-6 h-6 text-blue-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">
                   Real-time Feedback
                 </h3>
                 <p className="text-gray-600">
@@ -350,8 +401,8 @@ function App() {
                 We're working on exciting new features to make your job search
                 even more successful
               </p>
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">
-                <Sparkles className="w-4 h-4" />
+              <div className="inline-flex items-center gap-2 text-blue-700 px-4 py-2 rounded-full text-sm font-medium border border-blue-700 ">
+             
                 Stay tuned for updates
               </div>
             </div>

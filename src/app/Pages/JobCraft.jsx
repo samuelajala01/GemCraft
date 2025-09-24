@@ -5,7 +5,7 @@ import ResumeChatbot from "../ResumeChatbot";
 
 const JobCraft = () => {
   const [mode, setMode] = useState("refine"); // 'build' or 'refine'
-
+  
   // Refine mode states
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -27,35 +27,117 @@ const JobCraft = () => {
   };
 
   const handleRefineResume = async () => {
+    console.log("🚀 Starting handleRefineResume");
+    console.log("📁 File:", file);
+    console.log("📝 Job Description length:", jobDescription?.length);
+    console.log("🌐 Backend URL:", process.env.NEXT_PUBLIC_BACKEND_URL);
+
     setLoading(true);
     setError("");
     setShowPreview(false);
 
     try {
+      // Validate inputs first
+      if (!file) {
+        setError("Please select a PDF file");
+        return;
+      }
+      
+      if (!jobDescription.trim()) {
+        setError("Please enter a job description");
+        return;
+      }
+
       const formData = new FormData();
-      formData.append("resume", file);
-      formData.append("jobDescription", jobDescription);
+      
+      // Only required fields for refine mode
       formData.append("mode", "refine");
+      formData.append("jobDescription", jobDescription.trim());
+      formData.append("resume", file);
+
+      console.log("📤 FormData contents:");
+      console.log("  mode:", "refine");
+      console.log("  jobDescription length:", jobDescription.trim().length);
+      console.log("  resume:", file.name, `(${file.size} bytes, type: ${file.type})`);
+
+      console.log("🔗 Making request to:", `${process.env.NEXT_PUBLIC_BACKEND_URL}/refine-pdf`);
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/refine-pdf`, {
         method: "POST",
         body: formData,
       });
 
+      console.log("📨 Response status:", response.status);
+      console.log("📨 Response ok:", response.ok);
+      console.log("📨 Response headers:", Object.fromEntries(response.headers.entries()));
+
       if (!response.ok) {
-        throw new Error("Failed to refine resume");
+        let errorText = "Unknown error occurred";
+        try {
+          const contentType = response.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            const errorData = await response.json();
+            console.error("❌ Backend JSON error response:", errorData);
+            
+            // Handle FastAPI validation errors better
+            if (errorData.detail) {
+              if (typeof errorData.detail === 'string') {
+                errorText = errorData.detail;
+              } else if (Array.isArray(errorData.detail)) {
+                errorText = errorData.detail.map(err => `${err.loc ? err.loc.join('.') : 'Field'}: ${err.msg}`).join('; ');
+              } else {
+                errorText = JSON.stringify(errorData.detail);
+              }
+            } else if (errorData.errors && Array.isArray(errorData.errors)) {
+              errorText = errorData.errors.join('; ');
+            } else {
+              errorText = JSON.stringify(errorData);
+            }
+          } else {
+            errorText = await response.text();
+          }
+        } catch (parseError) {
+          console.error("❌ Error parsing error response:", parseError);
+          errorText = `HTTP ${response.status} - ${response.statusText}`;
+        }
+        
+        console.error("❌ Final error text:", errorText);
+        throw new Error(`Failed to refine resume: ${response.status} - ${errorText}`);
       }
 
+      console.log("✅ Response successful, creating blob...");
       const blob = await response.blob();
+      console.log("📄 Blob size:", blob.size, "bytes");
+      console.log("📄 Blob type:", blob.type);
+
+      // Check if response is actually a PDF
+      if (blob.type !== 'application/pdf' && blob.size < 1000) {
+        // Likely an error response in JSON format
+        const text = await blob.text();
+        console.error("❌ Received error instead of PDF:", text);
+        throw new Error("Server returned an error instead of PDF");
+      }
+
       const pdfUrl = URL.createObjectURL(blob);
+      console.log("🔗 PDF URL created:", pdfUrl);
+
       setSummary(pdfUrl);
       setShowPreview(true);
+      console.log("✅ handleRefineResume completed successfully");
+
     } catch (err) {
-      console.error(err);
+      console.error("💥 Error in handleRefineResume:", err);
+      console.error("💥 Error stack:", err.stack);
       setError("Error: " + err.message);
     } finally {
       setLoading(false);
+      console.log("🏁 handleRefineResume finished (loading set to false)");
     }
+  };
+
+  const handleBuildResume = async () => {
+    // This will be handled by ResumeChatbot component
+    console.log("Build mode handled by ResumeChatbot");
   };
 
   const handlePreviewPDF = () => {
@@ -81,12 +163,20 @@ const JobCraft = () => {
           Craft Your Perfect Resume
         </h2>
         <p className="text-gray-600">
-          Upload your resume and job description to get insights
+          {mode === "refine" 
+            ? "Upload your resume and job description to get insights" 
+            : "Build a new resume from scratch"}
         </p>
       </div>
+
       <div className="flex mb-6 border-b pb-4 gap-4">
         <button
-          onClick={() => setMode("refine")}
+          onClick={() => {
+            setMode("refine");
+            setError("");
+            setSummary("");
+            setShowPreview(false);
+          }}
           className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-medium ${
             mode === "refine"
               ? "bg-blue-600 text-white shadow-md"
@@ -96,7 +186,12 @@ const JobCraft = () => {
           Refine Existing
         </button>
         <button
-          onClick={() => setMode("build")}
+          onClick={() => {
+            setMode("build");
+            setError("");
+            setSummary("");
+            setShowPreview(false);
+          }}
           className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-medium mr-2 ${
             mode === "build"
               ? "bg-blue-600 text-white shadow-md"
@@ -112,7 +207,7 @@ const JobCraft = () => {
       {mode === "refine" && (
         <div className="space-y-6 bg-gray-50 p-5 sm:p-6 rounded-lg">
           <h3 className="text-lg font-semibold text-gray-800 my-4">
-            Upload your existing resume(*pdf)
+            Upload your existing resume (pdf)
           </h3>
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <label className="bg-blue-600 text-white px-5 py-2 rounded-lg cursor-pointer hover:bg-blue-700 transition-colors duration-200 inline-flex items-center justify-center font-medium">
@@ -209,7 +304,6 @@ const JobCraft = () => {
               Download PDF
             </button>
           </div>
-
           {showPreview && (
             <div className="p-6 sm:p-8 bg-white border shadow-lg min-h-screen rounded-lg">
               <iframe
