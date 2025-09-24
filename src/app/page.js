@@ -32,14 +32,14 @@ function App() {
 
   useEffect(() => {
     setIsLoaded(true);
-    
+
     // Add scroll-smooth class to html element for enhanced scrolling
-    document.documentElement.classList.add('scroll-smooth');
-    
+    document.documentElement.classList.add("scroll-smooth");
+
     // Handle smooth scrolling for anchor links
     const handleAnchorClick = (e) => {
-      const href = e.target.getAttribute('href');
-      if (href && href.startsWith('#')) {
+      const href = e.target.getAttribute("href");
+      if (href && href.startsWith("#")) {
         e.preventDefault();
         const targetId = href.substring(1);
         const targetElement = document.getElementById(targetId);
@@ -52,15 +52,15 @@ function App() {
     // Throttle function for performance optimization
     const throttle = (func, limit) => {
       let inThrottle;
-      return function() {
+      return function () {
         const args = arguments;
         const context = this;
         if (!inThrottle) {
           func.apply(context, args);
           inThrottle = true;
-          setTimeout(() => inThrottle = false, limit);
+          setTimeout(() => (inThrottle = false), limit);
         }
-      }
+      };
     };
 
     // Optimize scroll performance with passive listeners
@@ -70,22 +70,22 @@ function App() {
         // Optional: Add any scroll-based animations or effects here
       }, 16); // 60fps throttling
 
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      
+      window.addEventListener("scroll", handleScroll, { passive: true });
+
       return () => {
-        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener("scroll", handleScroll);
       };
     };
 
     const cleanupScroll = optimizeScrolling();
 
     // Add event listener for anchor links
-    document.addEventListener('click', handleAnchorClick);
-    
+    document.addEventListener("click", handleAnchorClick);
+
     // Cleanup on unmount
     return () => {
-      document.documentElement.classList.remove('scroll-smooth');
-      document.removeEventListener('click', handleAnchorClick);
+      document.documentElement.classList.remove("scroll-smooth");
+      document.removeEventListener("click", handleAnchorClick);
       cleanupScroll();
     };
   }, []);
@@ -93,7 +93,7 @@ function App() {
   // Enhanced smooth scroll function with better performance
   const smoothScrollTo = (element, offset = 0) => {
     if (!element) return;
-    
+
     const targetPosition = element.offsetTop - offset;
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
@@ -110,9 +110,9 @@ function App() {
       const timeElapsed = currentTime - startTime;
       const progress = Math.min(timeElapsed / duration, 1);
       const ease = easeInOutCubic(progress);
-      
+
       window.scrollTo(0, startPosition + distance * ease);
-      
+
       if (progress < 1) {
         requestAnimationFrame(animateScroll);
       }
@@ -185,8 +185,8 @@ function App() {
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Your resume crafting tool that transforms your resume
-              through intelligent optimization
+              Your resume crafting tool that transforms your resume through
+              intelligent optimization
             </p>
 
             {/* CTA Buttons */}
@@ -402,7 +402,6 @@ function App() {
                 even more successful
               </p>
               <div className="inline-flex items-center gap-2 text-blue-700 px-4 py-2 rounded-full text-sm font-medium border border-blue-700 ">
-             
                 Stay tuned for updates
               </div>
             </div>
