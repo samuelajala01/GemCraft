@@ -250,9 +250,9 @@ const ResumeChatbot = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto h-screen flex flex-col bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="max-w-4xl mx-auto h-screen flex flex-col bg-[#2d3748] rounded-lg shadow-lg overflow-hidden">
       {/* Header */}
-      <div className="bg-blue-600 text-white p-4 flex items-center justify-between">
+      <div className="bg-[#ff6b6b] text-white p-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Bot className="w-6 h-6" />
           <h2 className="text-xl font-bold">JobCraft Builder</h2>
@@ -275,20 +275,20 @@ const ResumeChatbot = () => {
           >
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                message.type === "user" ? "bg-blue-100" : "bg-gray-100"
+                message.type === "user" ? "bg-[#ff6b6b]/20" : "bg-[#4a5568]"
               }`}
             >
               {message.type === "user" ? (
-                <User className="w-4 h-4 text-blue-600" />
+                <User className="w-4 h-4 text-[#ff6b6b]" />
               ) : (
-                <Bot className="w-4 h-4 text-gray-600" />
+                <Bot className="w-4 h-4 text-gray-300" />
               )}
             </div>
             <div
               className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
                 message.type === "user"
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-100 text-gray-800"
+                  ? "bg-[#ff6b6b] text-white"
+                  : "bg-[#1a2332] text-gray-200"
               }`}
             >
               <p className="text-sm leading-relaxed whitespace-pre-wrap">
@@ -306,18 +306,18 @@ const ResumeChatbot = () => {
 
         {loading && (
           <div className="flex gap-3">
-            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
-              <Bot className="w-4 h-4 text-gray-600" />
+            <div className="w-8 h-8 rounded-full bg-[#4a5568] flex items-center justify-center">
+              <Bot className="w-4 h-4 text-gray-300" />
             </div>
-            <div className="bg-gray-100 px-4 py-3 rounded-2xl">
+            <div className="bg-[#1a2332] px-4 py-3 rounded-2xl">
               <div className="flex gap-1">
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                <div className="w-2 h-2 bg-[#ff6b6b] rounded-full animate-bounce"></div>
                 <div
-                  className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                  className="w-2 h-2 bg-[#ff6b6b] rounded-full animate-bounce"
                   style={{ animationDelay: "0.1s" }}
                 ></div>
                 <div
-                  className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                  className="w-2 h-2 bg-[#ff6b6b] rounded-full animate-bounce"
                   style={{ animationDelay: "0.2s" }}
                 ></div>
               </div>
@@ -330,11 +330,11 @@ const ResumeChatbot = () => {
 
       {/* Generate Resume Button */}
       {collectedData.isComplete && !generatedPDF && (
-        <div className="border-t p-4 bg-gray-50">
+        <div className="border-t border-[#4a5568] p-4 bg-[#1a2332]">
           <button
             onClick={generateResume}
             disabled={loading}
-            className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 disabled:bg-gray-400 transition-colors font-medium flex items-center justify-center gap-2"
+            className="w-full bg-[#ff6b6b] text-white py-3 rounded-lg hover:bg-[#ff5252] disabled:bg-[#4a5568] transition-colors font-medium flex items-center justify-center gap-2"
           >
             <FileText className="w-5 h-5" />
             Generate My Resume
@@ -344,18 +344,18 @@ const ResumeChatbot = () => {
 
       {/* PDF Actions */}
       {generatedPDF && (
-        <div className="border-t p-4 bg-gray-50">
+        <div className="border-t border-[#4a5568] p-4 bg-[#1a2332]">
           <div className="flex gap-3 flex-wrap">
             <button
               onClick={() => window.open(generatedPDF, "_blank")}
-              className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+              className="flex items-center gap-2 bg-[#ff6b6b] text-white px-4 py-2 rounded-lg hover:bg-[#ff5252] transition-colors"
             >
               <FileText className="w-4 h-4" />
               Preview PDF
             </button>
             <button
               onClick={handleDownload}
-              className="flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors"
+              className="flex items-center gap-2 bg-[#4a5568] text-white px-4 py-2 rounded-lg hover:bg-[#5a6578] transition-colors"
             >
               <Download className="w-4 h-4" />
               Download PDF
@@ -367,7 +367,7 @@ const ResumeChatbot = () => {
                   "What would you like to change or improve in your resume?"
                 )
               }
-              className="flex items-center gap-2 bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors"
+              className="flex items-center gap-2 bg-[#2d3748] text-white px-4 py-2 rounded-lg hover:bg-[#3d4758] transition-colors"
             >
               <Edit className="w-4 h-4" />
               Make Changes
@@ -377,7 +377,7 @@ const ResumeChatbot = () => {
       )}
 
       {/* Input */}
-      <div className="border-t p-4">
+      <div className="border-t border-[#4a5568] p-4 bg-[#1a2332]">
         <div className="flex gap-3">
           <input
             type="text"
@@ -385,29 +385,29 @@ const ResumeChatbot = () => {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
             placeholder="Type your response... (be as detailed as you want)"
-            className="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+            className="flex-1 px-4 py-2 bg-[#2d3748] border border-[#4a5568] rounded-lg focus:ring-2 focus:ring-[#ff6b6b] focus:border-[#ff6b6b] outline-none text-gray-200 placeholder-gray-500"
             disabled={loading}
           />
           <button
             onClick={handleSendMessage}
             disabled={loading || !input.trim()}
-            className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+            className="bg-[#ff6b6b] text-white p-2 rounded-lg hover:bg-[#ff5252] disabled:bg-[#4a5568] disabled:cursor-not-allowed transition-colors"
           >
             <Send className="w-5 h-5" />
           </button>
         </div>
-        <p className="text-xs text-gray-500 mt-2">
-          💡 Tip: You can be conversational! Include as much detail as you want
-          - I'll organize it properly.
-        </p>
+        <div className="flex items-center gap-2 text-xs text-gray-400 mt-2">
+          <Sparkles className="w-3 h-3 text-[#ff6b6b]" />
+          <p>Tip: You can be conversational! Include as much detail as you want - I'll organize it properly.</p>
+        </div>
 
         {/* Data Preview */}
         {Object.keys(collectedData.personalInfo).length > 0 && (
-          <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-            <h4 className="font-semibold text-blue-800 mb-2 text-sm">
+          <div className="mt-4 p-3 bg-[#2d3748] rounded-lg border border-[#4a5568]">
+            <h4 className="font-semibold text-gray-200 mb-2 text-sm">
               Information Collected:
             </h4>
-            <div className="text-xs text-blue-700 space-y-1">
+            <div className="text-xs text-gray-400 space-y-1">
               {collectedData.personalInfo.name && (
                 <p>
                   <strong>Name:</strong> {collectedData.personalInfo.name}

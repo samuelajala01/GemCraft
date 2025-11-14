@@ -12,27 +12,27 @@ const gradeToScore = (grade) => {
 const gradeColor = (grade) => {
   switch (grade.toUpperCase()) {
     case "A":
-      return "bg-green-100 text-green-800 border-green-200";
+      return "bg-[#ff6b6b]/20 text-[#ff6b6b] border-[#ff6b6b]/30";
     case "B":
-      return "bg-blue-100 text-blue-800 border-blue-200";
+      return "bg-[#4a5568]/20 text-gray-300 border-[#4a5568]";
     case "C":
-      return "bg-yellow-100 text-yellow-800 border-yellow-200";
+      return "bg-yellow-900/20 text-yellow-400 border-yellow-700";
     case "D":
-      return "bg-orange-100 text-orange-800 border-orange-200";
+      return "bg-orange-900/20 text-orange-400 border-orange-700";
     case "F":
-      return "bg-red-100 text-red-800 border-red-200";
+      return "bg-red-900/20 text-red-400 border-red-700";
     default:
-      return "bg-gray-100 text-gray-800 border-gray-200";
+      return "bg-gray-800/20 text-gray-400 border-gray-700";
   }
 };
 
 const getScoreColor = (score, maxScore) => {
   const percentage = (score / maxScore) * 100;
-  if (percentage >= 90) return "text-green-600";
-  if (percentage >= 80) return "text-blue-600";
-  if (percentage >= 70) return "text-yellow-600";
-  if (percentage >= 60) return "text-orange-600";
-  return "text-red-600";
+  if (percentage >= 90) return "text-[#ff6b6b]";
+  if (percentage >= 80) return "text-[#ff8787]";
+  if (percentage >= 70) return "text-yellow-400";
+  if (percentage >= 60) return "text-orange-400";
+  return "text-red-400";
 };
 
 const ResGrader = () => {
@@ -146,27 +146,30 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
   const maxPossibleScore = summary.length * 20;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen py-8">
       <div className="max-w-4xl mx-auto px-2">
 
       <div className="text-center mb-8">
-      <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+      <div className="inline-flex items-center gap-2 bg-[#ff6b6b]/10 text-[#ff6b6b] px-4 py-2 rounded-full text-sm font-medium mb-6 border border-[#ff6b6b]/20">
         <Award className="w-4 h-4" />
         Resume Grader
       </div>
-      <h2 className="text-3xl font-bold text-gray-800 mb-4">Grade Your Resume</h2>
-      <p className="text-gray-600">Get detailed analysis and actionable feedback on your resume</p>
+      <h2 className="text-3xl font-bold text-gray-100 mb-4">Grade Your Resume</h2>
+      <p className="text-gray-400">Get detailed analysis and actionable feedback on your resume</p>
     </div>
 
-        <div className="bg-white shadow-lg rounded-xl p-8 border">
+        <div className="bg-[#2d3748] shadow-lg rounded-xl p-8 border border-[#4a5568]">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-blue-700 mb-3">Resume Grader 🔍</h1>
-            <p className="text-gray-600 text-lg">Get personalized feedback on your resume based on your target job</p>
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <FileText className="w-10 h-10 text-[#ff6b6b]" />
+              <h1 className="text-4xl font-bold text-gray-100">Resume Grader</h1>
+            </div>
+            <p className="text-gray-400 text-lg">Get personalized feedback on your resume based on your target job</p>
           </div>
 
           <div className="space-y-6">
             <div className="mb-8">
-              <label className="block text-sm font-semibold mb-2 text-gray-700">
+              <label className="block text-sm font-semibold mb-2 text-gray-300">
                 Target Job Title *
               </label>
               <input
@@ -174,12 +177,12 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
                 value={jobTitle}
                 onChange={(e) => setJobTitle(e.target.value)}
                 placeholder="e.g. Backend Developer, Marketing Manager, Data Scientist"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 bg-[#1a2332] border border-[#4a5568] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff6b6b] focus:border-transparent transition-all text-gray-200 placeholder-gray-500"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold mb-2 text-gray-700">
+              <label className="block text-sm font-semibold mb-2 text-gray-300">
                 Upload Resume (PDF only) *
               </label>
               <div className="relative mb-4">
@@ -187,11 +190,11 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
                   type="file"
                   accept=".pdf"
                   onChange={handleFileChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-all"
+                  className="w-full px-4 py-3 bg-[#1a2332] border border-[#4a5568] rounded-lg text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#ff6b6b]/20 file:text-[#ff6b6b] hover:file:bg-[#ff6b6b]/30 transition-all"
                 />
               </div>
               {file && (
-                <div className="mt-3 flex items-center gap-2 text-green-600 bg-green-50 p-3 rounded-lg">
+                <div className="mt-3 flex items-center gap-2 text-[#ff6b6b] bg-[#ff6b6b]/10 p-3 rounded-lg border border-[#ff6b6b]/20">
                   <CheckCircle2 size={18} />
                   <span className="text-sm font-medium">{file.name}</span>
                 </div>
@@ -199,14 +202,14 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
             </div>
 
             {error && (
-              <div className="flex items-center gap-2 text-red-600 bg-red-50 p-4 rounded-lg border border-red-200">
+              <div className="flex items-center gap-2 text-red-400 bg-red-900/20 p-4 rounded-lg border border-red-700">
                 <AlertCircle size={18} />
                 <span className="text-sm font-medium">{error}</span>
               </div>
             )}
 
             {success && !loading && (
-              <div className="flex items-center gap-2 text-green-600 bg-green-50 p-4 rounded-lg border border-green-200">
+              <div className="flex items-center gap-2 text-[#ff6b6b] bg-[#ff6b6b]/10 p-4 rounded-lg border border-[#ff6b6b]/20">
                 <CheckCircle2 size={18} />
                 <span className="text-sm font-medium">Resume analyzed successfully!</span>
               </div>
@@ -215,7 +218,7 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
             <button
               onClick={handleSummarize}
               disabled={!file || !jobTitle.trim() || loading}
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 px-6 rounded-lg hover:from-blue-700 hover:to-blue-800 font-semibold flex justify-center items-center gap-3 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed transition-all duration-200 text-lg shadow-lg"
+              className="w-full bg-[#ff6b6b] text-white py-4 px-6 rounded-lg hover:bg-[#ff5252] font-semibold flex justify-center items-center gap-3 disabled:bg-[#4a5568] disabled:cursor-not-allowed transition-all duration-200 text-lg shadow-lg"
             >
               {loading ? (
                 <>
@@ -235,15 +238,15 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
         {summary.length > 0 && (
           <div className="mt-8 space-y-6">
             {/* Total Score Card */}
-            <div className="bg-white shadow-lg rounded-xl p-6 border mb-8">
+            <div className="bg-[#2d3748] shadow-lg rounded-xl p-6 border border-[#4a5568] mb-8">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="bg-yellow-100 p-3 rounded-full">
-                    <Star className="text-yellow-600 w-8 h-8" />
+                  <div className="bg-[#ff6b6b]/20 p-3 rounded-full">
+                    <Star className="text-[#ff6b6b] w-8 h-8" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-800">Overall Score</h3>
-                    <p className="text-gray-600 text-sm">Based on 5 key metrics</p>
+                    <h3 className="text-xl font-bold text-gray-100">Overall Score</h3>
+                    <p className="text-gray-400 text-sm">Based on 5 key metrics</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -265,10 +268,10 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
               {summary.map((item, index) => (
                 <div
                   key={index}
-                  className={`rounded-xl p-6 border-2 ${gradeColor(item.grade)} shadow-md hover:shadow-lg transition-shadow`}
+                  className={`rounded-xl p-6 border-2 ${gradeColor(item.grade)} shadow-md hover:shadow-lg transition-shadow bg-[#1a2332]`}
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <h4 className="font-bold text-xl">{item.metric}</h4>
+                    <h4 className="font-bold text-xl text-gray-200">{item.metric}</h4>
                     <div className="text-right">
                       <div className="text-2xl font-extrabold mb-1">{item.grade}</div>
                       <div className="text-sm opacity-75">
@@ -276,7 +279,7 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
                       </div>
                     </div>
                   </div>
-                  <div className="text-sm leading-relaxed">
+                  <div className="text-sm leading-relaxed text-gray-300">
                     {item.feedback}
                   </div>
                 </div>

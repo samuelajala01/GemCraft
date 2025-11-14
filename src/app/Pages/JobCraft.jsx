@@ -153,23 +153,23 @@ const JobCraft = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 sm:p-8 bg-white rounded-xl shadow-lg">
+    <div className="max-w-4xl mx-auto p-4 sm:p-8 bg-[#2d3748] rounded-xl shadow-lg">
       <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+        <div className="inline-flex items-center gap-2 bg-[#ff6b6b]/10 text-[#ff6b6b] px-4 py-2 rounded-full text-sm font-medium mb-6 border border-[#ff6b6b]/20">
           <Target className="w-4 h-4" />
           Job Craft Mode
         </div>
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">
+        <h2 className="text-3xl font-bold text-gray-100 mb-4">
           Craft Your Perfect Resume
         </h2>
-        <p className="text-gray-600">
+        <p className="text-gray-400">
           {mode === "refine" 
             ? "Upload your resume and job description to get insights" 
             : "Build a new resume from scratch"}
         </p>
       </div>
 
-      <div className="flex mb-6 border-b pb-4 gap-4">
+      <div className="flex mb-6 border-b border-[#4a5568] pb-4 gap-4">
         <button
           onClick={() => {
             setMode("refine");
@@ -179,8 +179,8 @@ const JobCraft = () => {
           }}
           className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-medium ${
             mode === "refine"
-              ? "bg-blue-600 text-white shadow-md"
-              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              ? "bg-[#ff6b6b] text-white shadow-md"
+              : "bg-[#4a5568] text-gray-300 hover:bg-[#5a6578]"
           }`}
         >
           Refine Existing
@@ -194,8 +194,8 @@ const JobCraft = () => {
           }}
           className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-medium mr-2 ${
             mode === "build"
-              ? "bg-blue-600 text-white shadow-md"
-              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              ? "bg-[#ff6b6b] text-white shadow-md"
+              : "bg-[#4a5568] text-gray-300 hover:bg-[#5a6578]"
           }`}
         >
           Build Resume
@@ -205,12 +205,12 @@ const JobCraft = () => {
       {mode === "build" && <ResumeChatbot />}
 
       {mode === "refine" && (
-        <div className="space-y-6 bg-gray-50 p-5 sm:p-6 rounded-lg">
-          <h3 className="text-lg font-semibold text-gray-800 my-4">
+        <div className="space-y-6 bg-[#1a2332] p-5 sm:p-6 rounded-lg border border-[#4a5568]">
+          <h3 className="text-lg font-semibold text-gray-100 my-4">
             Upload your existing resume (pdf)
           </h3>
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <label className="bg-blue-600 text-white px-5 py-2 rounded-lg cursor-pointer hover:bg-blue-700 transition-colors duration-200 inline-flex items-center justify-center font-medium">
+            <label className="bg-[#ff6b6b] text-white px-5 py-2 rounded-lg cursor-pointer hover:bg-[#ff5252] transition-colors duration-200 inline-flex items-center justify-center font-medium">
               <svg
                 className="w-5 h-5 mr-2"
                 fill="none"
@@ -234,13 +234,13 @@ const JobCraft = () => {
               />
             </label>
             {file && (
-              <span className="text-green-600 text-sm sm:text-base">
+              <span className="text-[#ff6b6b] text-sm sm:text-base">
                 {file.name}
               </span>
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 my-2">
+            <label className="block text-sm font-medium text-gray-300 my-2">
               Job Description
             </label>
             <textarea
@@ -248,14 +248,14 @@ const JobCraft = () => {
               placeholder="Paste job description..."
               value={jobDescription}
               onChange={(e) => setJobDescription(e.target.value)}
-              className="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+              className="w-full px-4 py-2.5 bg-[#2d3748] border border-[#4a5568] rounded-lg focus:ring-2 focus:ring-[#ff6b6b] focus:border-[#ff6b6b] outline-none transition-all text-gray-200 placeholder-gray-500"
             />
           </div>
           <button
             onClick={handleRefineResume}
             disabled={loading || !file || !jobDescription}
-            className="bg-blue-600 text-white mt-4 px-6 py-2.5 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed font-medium"
-          >
+            className="bg-[#ff6b6b] text-white mt-4 px-6 py-2.5 rounded-lg hover:bg-[#ff5252] transition-colors duration-200 shadow-md disabled:bg-[#4a5568] disabled:cursor-not-allowed font-medium">
+          
             {loading ? (
               <span className="flex items-center justify-center">
                 <svg
@@ -293,19 +293,19 @@ const JobCraft = () => {
           <div className="flex flex-wrap gap-3 mb-4">
             <button
               onClick={handlePreviewPDF}
-              className="bg-green-600 text-white px-6 py-2.5 rounded-lg hover:bg-green-700 transition-colors duration-200 shadow-md font-medium"
+              className="bg-[#ff6b6b] text-white px-6 py-2.5 rounded-lg hover:bg-[#ff5252] transition-colors duration-200 shadow-md font-medium"
             >
               {showPreview ? "Hide Preview" : "Preview PDF"}
             </button>
             <button
               onClick={handleDownloadPDF}
-              className="bg-purple-600 text-white px-6 py-2.5 rounded-lg hover:bg-purple-700 transition-colors duration-200 shadow-md font-medium"
+              className="bg-[#4a5568] text-white px-6 py-2.5 rounded-lg hover:bg-[#5a6578] transition-colors duration-200 shadow-md font-medium"
             >
               Download PDF
             </button>
           </div>
           {showPreview && (
-            <div className="p-6 sm:p-8 bg-white border shadow-lg min-h-screen rounded-lg">
+            <div className="p-6 sm:p-8 bg-[#2d3748] border border-[#4a5568] shadow-lg min-h-screen rounded-lg">
               <iframe
                 src={summary}
                 width="100%"

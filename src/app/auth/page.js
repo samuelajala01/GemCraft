@@ -36,7 +36,7 @@ export default function AuthPage() {
           </h2>
         </div>
         {error && (
-          <div className="bg-red-50 text-red-500 p-3 rounded-md text-sm">
+          <div className="bg-red-50 p-3 rounded-md text-sm">
             {error}
           </div>
         )}
@@ -45,7 +45,7 @@ export default function AuthPage() {
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium"
               >
                 Name
               </label>
@@ -54,7 +54,7 @@ export default function AuthPage() {
                 name="name"
                 type="text"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
@@ -65,7 +65,7 @@ export default function AuthPage() {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium"
             >
               Email address
             </label>

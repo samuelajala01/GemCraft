@@ -19,14 +19,14 @@ import Link from "next/link";
 const Navbar = () => {
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg shadow-sm z-50 border-b border-white/20">
+      <header className="fixed top-0 left-0 right-0  backdrop-blur-lg shadow-sm z-50 border-b border-[#4a5568]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0">
             <div className="flex items-center gap-2 sm:gap-3">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-                <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center">
+                <Sparkles className="w-4 h-4 sm:w-6 sm:h-6" />
               </div>
-              <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <div className="text-xl sm:text-2xl font-bold">
                 GemCraft
               </div>
             </div>
@@ -50,7 +50,7 @@ const Navbar = () => {
             <div className="flex items-center gap-4">
                   <a
                     href="https://github.com/samuelajala01/gemcraft"
-                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                    className="transition-colors"
                   >
                     <Github className="w-10 h-10" />
                   </a>

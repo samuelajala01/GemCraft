@@ -170,7 +170,7 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen">
         {/* Clean background */}
 
         <section
@@ -180,11 +180,11 @@ function App() {
         >
           <div className="max-w-7xl mx-auto px-6 text-center">
             <h1 className="text-6xl md:text-8xl font-black lg:my-12">
-              <span className="text-blue-600">Gem</span>
-              <span className="text-gray-900">Craft</span>
+              <span className="">Gem</span>
+              <span className="">Craft</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl  mb-12 max-w-3xl mx-auto leading-relaxed">
               Your resume crafting tool that transforms your resume through
               intelligent optimization
             </p>
@@ -193,14 +193,14 @@ function App() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
               <button
                 onClick={handleStartCrafting}
-                className="group bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+                className="group  px-8 py-4 rounded-xl font-semibold text-lg hover:bg-[#ff5252] hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
               >
                 Start Crafting
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <button
                 onClick={handleGradeResume}
-                className="bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all duration-300 border border-gray-300 hover:shadow-lg"
+                className=" px-8 py-4 rounded-xl font-semibold text-lg hover:bg-[#4a5568] transition-all duration-300 border border-[#4a5568] hover:shadow-lg"
               >
                 Grade My Resume
               </button>
@@ -209,52 +209,58 @@ function App() {
             {/* Stats Section */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto mb-16">
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">1K+</div>
-                <div className="text-gray-600">Resumes Optimized</div>
+                <div className="text-3xl font-bold mb-2">1K+</div>
+                <div className="">Resumes Optimized</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">85%</div>
-                <div className="text-gray-600">Interview Rate Increase</div>
+                <div className="text-3xl font-bold mb-2">85%</div>
+                <div className="">Interview Rate Increase</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">2K+</div>
-                <div className="text-gray-600">Job Matches Made</div>
+                <div className="text-3xl font-bold  mb-2">2K+</div>
+                <div className="">Job Matches Made</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">
+                <div className="text-3xl font-bold  mb-2">
                   4.9/5
                 </div>
-                <div className="text-gray-600">User Rating</div>
+                <div className="">User Rating</div>
               </div>
             </div>
 
             {/* Feature Highlights */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <div className="text-2xl mb-2">🎯</div>
-                <div className="font-semibold text-gray-900 mb-1">
+              <div className=" p-6 rounded-2xl border border-[#4a5568] shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                  <Target className="w-6 h-6" />
+                </div>
+                <div className="font-semibold  mb-1">
                   Smart Matching
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm ">
                   AI-powered job alignment that identifies key skills and
                   requirements
                 </div>
               </div>
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <div className="text-2xl mb-2">📊</div>
-                <div className="font-semibold text-gray-900 mb-1">
+              <div className=" p-6 rounded-2xl border border-[#4a5568] shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
+                <div className="w-12 h-12  rounded-lg flex items-center justify-center mb-4">
+                  <TrendingUp className="w-6 h-6" />
+                </div>
+                <div className="font-semibold  mb-1">
                   Detailed Analysis
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm">
                   Comprehensive feedback with actionable improvement suggestions
                 </div>
               </div>
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <div className="text-2xl mb-2">⚡</div>
-                <div className="font-semibold text-gray-900 mb-1">
+              <div className=" p-6 rounded-2xl border shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
+                <div className="w-12 h-12  rounded-lg flex items-center justify-center mb-4">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <div className="font-semibold mb-1">
                   Instant Results
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm">
                   Real-time optimization with immediate feedback and
                   improvements
                 </div>
@@ -264,13 +270,13 @@ function App() {
         </section>
 
         {/* How It Works Section */}
-        <section id="how-it-works" className="py-16 bg-white">
+        <section id="how-it-works" className="py-16 ">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold mb-4">
                 How GemCraft Works
               </h2>
-              <p className="text-xl text-gray-700 max-w-2xl mx-auto">
+              <p className="text-xl max-w-2xl mx-auto">
                 Transform your resume in three simple steps with our AI-powered
                 optimization engine
               </p>
@@ -278,39 +284,38 @@ function App() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center group">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <FileText className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <FileText className="w-8 h-8 " />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-xl font-semibold mb-3">
                   1. Upload Your Resume
                 </h3>
-                <p className="text-gray-600">
+                <p className="">
                   Upload your current resume and let our AI analyze your
                   experience, skills, and achievements
                 </p>
               </div>
 
               <div className="text-center group">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Target className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Target className="w-8 h-8 " />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-xl font-semibold  mb-3">
                   2. Add Job Description
                 </h3>
-                <p className="text-gray-600">
+                <p className="">
                   Paste the job description you're targeting and our AI will
                   identify key requirements and skills
                 </p>
               </div>
-
               <div className="text-center group">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Sparkles className="w-8 h-8 text-white" />
+                <div className="w-16 h-16  rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Sparkles className="w-8 h-8 " />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-xl font-semibold  mb-3">
                   3. Get Optimized Results
                 </h3>
-                <p className="text-gray-600">
+                <p className="">
                   Receive personalized suggestions and improvements to make your
                   resume stand out to employers
                 </p>
@@ -320,67 +325,66 @@ function App() {
         </section>
 
         {/* Features Section */}
-        <section id="features" className="py-16 bg-gray-50">
+        <section id="features" className="py-16 ">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold  mb-4">
                 Powerful Features
               </h2>
-              <p className="text-xl text-gray-700 max-w-2xl mx-auto">
+              <p className="text-xl  max-w-2xl mx-auto">
                 Everything you need to create a winning resume that gets noticed
                 by recruiters
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <TrendingUp className="w-6 h-6 text-blue-600" />
+              <div className=" p-6 rounded-2xl border border-[#4a5568] shadow-md hover:shadow-lg transition-all duration-300">
+                <div className="w-12 h-12  rounded-lg flex items-center justify-center mb-4">
+                  <CheckCircle className="w-6 h-6 " />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                <h3 className="text-lg font-semibold  mb-3">
                   ATS Optimization
                 </h3>
-                <p className="text-gray-600">
+                <p className="">
                   Ensure your resume passes Applicant Tracking Systems with
                   keyword optimization and formatting
                 </p>
               </div>
-
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <Clock className="w-6 h-6 text-blue-600" />
+              <div className=" p-6 rounded-2xl border border-[#4a5568] shadow-md hover:shadow-lg transition-all duration-300">
+                <div className="w-12 h-12  rounded-lg flex items-center justify-center mb-4">
+                  <Clock className="w-6 h-6 " />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                <h3 className="text-lg font-semibold mb-3">
                   Real-time Feedback
                 </h3>
-                <p className="text-gray-600">
+                <p className="">
                   Get rapid responses and improvement tips within seconds
                   whenever you query your resume—no waiting, just actionable
                   insights.
                 </p>
               </div>
 
-              <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
-                  <Shield className="w-6 h-6 text-pink-600" />
+              <div className=" p-6 rounded-2xl border shadow-md hover:shadow-lg transition-all duration-300">
+                <div className="w-12 h-12  rounded-lg flex items-center justify-center mb-4">
+                  <Shield className="w-6 h-6 " />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                <h3 className="text-lg font-semibold mb-3">
                   Privacy Focused
                 </h3>
-                <p className="text-gray-600">
+                <p className="">
                   Your data is secure and private. We never store your personal
                   information or resume content
                 </p>
               </div>
 
-              <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                  <BookOpen className="w-6 h-6 text-indigo-600" />
+              <div className=" p-6 rounded-2xl border shadow-md hover:shadow-lg transition-all duration-300">
+                <div className="w-12 h-12  rounded-lg flex items-center justify-center mb-4">
+                  <BookOpen className="w-6 h-6 " />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                <h3 className="text-lg font-semibold mb-3">
                   Smart Suggestions
                 </h3>
-                <p className="text-gray-600">
+                <p className="">
                   AI-powered recommendations for better word choices, phrases,
                   and content structure
                 </p>
@@ -390,18 +394,20 @@ function App() {
         </section>
 
         {/* Coming Soon Section */}
-        <section className="py-16 bg-white/30 backdrop-blur-sm">
+        <section className="py-16 ">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <div className="bg-white/60 backdrop-blur-sm p-8 rounded-2xl border border-white/20 shadow-lg">
-              <div className="text-4xl mb-4">🚀</div>
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">
+            <div className="p-8 rounded-2xl border shadow-lg">
+              <div className="w-16 h-16  rounded-full flex items-center justify-center mx-auto mb-4">
+                <Zap className="w-8 h-8 " />
+              </div>
+              <h2 className="text-3xl font-bold  mb-4">
                 More Features Coming Soon
               </h2>
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-lg mb-6">
                 We're working on exciting new features to make your job search
                 even more successful
               </p>
-              <div className="inline-flex items-center gap-2 text-blue-700 px-4 py-2 rounded-full text-sm font-medium border border-blue-700 ">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border">
                 Stay tuned for updates
               </div>
             </div>
@@ -410,9 +416,9 @@ function App() {
 
         {/* Main Content */}
         <main className="max-w-7xl mx-auto px-6 pb-16">
-          <div className="bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
+          <div className=" backdrop-blur-lg rounded-3xl shadow-2xl border overflow-hidden">
             {/* Sub Navigation */}
-            <nav className="border-b border-gray-100 bg-white/50 backdrop-blur-sm overflow-x-auto">
+            <nav className="border-b  backdrop-blur-sm overflow-x-auto">
               <div className="flex justify-center gap-1 p-2 min-w-max">
                 {[
                   { key: "home", label: "Home", icon: Sparkles },
@@ -425,7 +431,7 @@ function App() {
                     className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
                       currentPage === key
                         ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transform scale-105"
-                        : "text-gray-600 hover:text-gray-800 hover:bg-white/60"
+                        : " hover:text-gray-800 hover:bg-white/60"
                     }`}
                   >
                     <Icon className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
