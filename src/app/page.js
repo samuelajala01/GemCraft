@@ -231,10 +231,10 @@ function App() {
             {/* Feature Highlights */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
               <div className=" p-6 rounded-2xl border border-[#4a5568] shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                  <Target className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-lg flex mx-auto items-center justify-center mb-4">
+                  <Target className="w-6 h-6 mx-auto" />
                 </div>
-                <div className="font-semibold  mb-1">
+                <div className="font-semibold mb-1">
                   Smart Matching
                 </div>
                 <div className="text-sm ">
@@ -243,7 +243,7 @@ function App() {
                 </div>
               </div>
               <div className=" p-6 rounded-2xl border border-[#4a5568] shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <div className="w-12 h-12  rounded-lg flex items-center justify-center mb-4">
+                <div className="w-12 h-12  rounded-lg flex mx-auto items-center justify-center mb-4">
                   <TrendingUp className="w-6 h-6" />
                 </div>
                 <div className="font-semibold  mb-1">
@@ -254,7 +254,7 @@ function App() {
                 </div>
               </div>
               <div className=" p-6 rounded-2xl border shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <div className="w-12 h-12  rounded-lg flex items-center justify-center mb-4">
+                <div className="w-12 h-12  rounded-lg flex mx-auto items-center justify-center mb-4">
                   <Zap className="w-6 h-6" />
                 </div>
                 <div className="font-semibold mb-1">

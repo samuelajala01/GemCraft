@@ -306,18 +306,18 @@ const ResumeChatbot = () => {
 
         {loading && (
           <div className="flex gap-3">
-            <div className="w-8 h-8 rounded-full bg-[#4a5568] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center">
               <Bot className="w-4 h-4 text-gray-300" />
             </div>
-            <div className="bg-[#1a2332] px-4 py-3 rounded-2xl">
+            <div className="px-4 py-3 rounded-2xl">
               <div className="flex gap-1">
-                <div className="w-2 h-2 bg-[#ff6b6b] rounded-full animate-bounce"></div>
+                <div className="w-2 h-2  rounded-full animate-bounce"></div>
                 <div
-                  className="w-2 h-2 bg-[#ff6b6b] rounded-full animate-bounce"
+                  className="w-2 h-2 rounded-full animate-bounce"
                   style={{ animationDelay: "0.1s" }}
                 ></div>
                 <div
-                  className="w-2 h-2 bg-[#ff6b6b] rounded-full animate-bounce"
+                  className="w-2 h-2 rounded-full animate-bounce"
                   style={{ animationDelay: "0.2s" }}
                 ></div>
               </div>
