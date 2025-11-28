@@ -81,7 +81,7 @@ const ResGrader = () => {
       const base64Data = await convertFileToBase64(file);
 
       const prompt = `
-You are a resume grading expert. Analyze the resume for the job title "${jobTitle}".
+You are a resume grading expert with several years of experience. Analyze the resume for the job title and level(if included) "${jobTitle}".
 Evaluate it on these 5 specific metrics:
 1. Clarity & Structure
 2. Keyword Optimization  
@@ -108,7 +108,7 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
       ];
 
       const response = await ai.models.generateContent({
-        model: "gemini-2.0-flash",
+        model: "gemini-2.5-flash",
         contents,
         temperature: 0,
         topP: 1.0,
@@ -177,7 +177,7 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
                 value={jobTitle}
                 onChange={(e) => setJobTitle(e.target.value)}
                 placeholder="e.g. Backend Developer, Marketing Manager, Data Scientist"
-                className="w-full px-4 py-3  border border-[#4a5568] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff6b6b] focus:border-transparent transition-all text-gray-200"
+                className="w-full px-4 py-3  border border-[#4a5568] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff6b6b] focus:border-transparent transition-all"
               />
             </div>
 
@@ -218,7 +218,7 @@ Give each metric a grade (A, B, C, D, or F) and provide expert feedback. Be spec
             <button
               onClick={handleSummarize}
               disabled={!file || !jobTitle.trim() || loading}
-              className="w-full text-white py-4 px-6 rounded-lg font-semibold flex justify-center items-center gap-3 disabled:bg-[#4a5568] disabled:cursor-not-allowed transition-all duration-200 text-lg shadow-lg"
+              className="w-full py-4 px-6 rounded-lg font-semibold flex justify-center items-center gap-3 disabled:cursor-not-allowed transition-all duration-200 text-lg shadow-lg"
             >
               {loading ? (
                 <>
