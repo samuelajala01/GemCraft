@@ -153,23 +153,23 @@ const JobCraft = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 sm:p-8 bg-[#2d3748] rounded-xl shadow-lg">
+    <div className="max-w-4xl mx-auto p-4 sm:p-8 rounded-xl shadow-lg">
       <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-2 bg-[#ff6b6b]/10 text-[#ff6b6b] px-4 py-2 rounded-full text-sm font-medium mb-6 border border-[#ff6b6b]/20">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-[#ff6b6b]/20">
           <Target className="w-4 h-4" />
           Job Craft Mode
         </div>
-        <h2 className="text-3xl font-bold text-gray-100 mb-4">
+        <h2 className="text-3xl font-bold mb-4">
           Craft Your Perfect Resume
         </h2>
-        <p className="text-gray-400">
+        <p className="">
           {mode === "refine" 
             ? "Upload your resume and job description to get insights" 
             : "Build a new resume from scratch"}
         </p>
       </div>
 
-      <div className="flex mb-6 border-b border-[#4a5568] pb-4 gap-4">
+      <div className="flex mb-6 border-b border-[#000] pb-4 gap-4">
         <button
           onClick={() => {
             setMode("refine");
@@ -179,8 +179,8 @@ const JobCraft = () => {
           }}
           className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-medium ${
             mode === "refine"
-              ? "bg-[#ff6b6b] text-white shadow-md"
-              : "bg-[#4a5568] text-gray-300 hover:bg-[#5a6578]"
+              ? " border-4"
+              : " hover:border-4 border-[#000000]"
           }`}
         >
           Refine Existing
@@ -194,8 +194,8 @@ const JobCraft = () => {
           }}
           className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-medium mr-2 ${
             mode === "build"
-              ? "bg-[#ff6b6b] text-white shadow-md"
-              : "bg-[#4a5568] text-gray-300 hover:bg-[#5a6578]"
+              ? "border-4 border-[#000]"
+              : "hover:border-4"
           }`}
         >
           Build Resume
@@ -205,12 +205,12 @@ const JobCraft = () => {
       {mode === "build" && <ResumeChatbot />}
 
       {mode === "refine" && (
-        <div className="space-y-6 bg-[#1a2332] p-5 sm:p-6 rounded-lg border border-[#4a5568]">
-          <h3 className="text-lg font-semibold text-gray-100 my-4">
+        <div className="space-y-6 p-5 sm:p-6 rounded-lg border border-[#4a5568]">
+          <h3 className="text-lg font-semibold my-4">
             Upload your existing resume (pdf)
           </h3>
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <label className="bg-[#ff6b6b] text-white px-5 py-2 rounded-lg cursor-pointer hover:bg-[#ff5252] transition-colors duration-200 inline-flex items-center justify-center font-medium">
+            <label className="border-2 px-5 py-2 rounded-lg cursor-pointer transition-colors duration-200 inline-flex items-center justify-center font-medium">
               <svg
                 className="w-5 h-5 mr-2"
                 fill="none"
@@ -234,13 +234,13 @@ const JobCraft = () => {
               />
             </label>
             {file && (
-              <span className="text-[#ff6b6b] text-sm sm:text-base">
+              <span className=" text-sm sm:text-base">
                 {file.name}
               </span>
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300 my-2">
+            <label className="block text-sm font-medium my-2">
               Job Description
             </label>
             <textarea
@@ -248,7 +248,7 @@ const JobCraft = () => {
               placeholder="Paste job description..."
               value={jobDescription}
               onChange={(e) => setJobDescription(e.target.value)}
-              className="w-full px-4 py-2.5 bg-[#2d3748] border border-[#4a5568] rounded-lg focus:ring-2 focus:ring-[#ff6b6b] focus:border-[#ff6b6b] outline-none transition-all text-gray-200 placeholder-gray-500"
+              className="w-full px-4 py-2.5 border border-[#4a5568] rounded-lg focus:ring-2 focus:ring-[#ff6b6b] focus:border-[#ff6b6b] outline-none transition-all text-gray-200 placeholder-gray-500"
             />
           </div>
           <button
